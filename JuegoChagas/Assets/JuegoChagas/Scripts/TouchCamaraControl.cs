@@ -11,8 +11,8 @@ public class TouchCamaraControl : MonoBehaviour {
 	public float maxZoom = 200.0f;
 	public bool invertMoveX = false;
 	public bool invertMoveY = false;
-	public float mapWidth = 100.0f;
-	public float mapHeight = 150.0f;
+	public float mapWidth = 700.0f;
+	public float mapHeight = 600.0f;
 	
 	public float inertiaDuration = 1.0f;
 	
@@ -76,15 +76,15 @@ public class TouchCamaraControl : MonoBehaviour {
 				}
 				else if (touches[0].phase == TouchPhase.Moved)
 				{
-					Vector2 delta = touches[0].deltaPosition;
+					Vector3 delta = touches[0].deltaPosition;
 					
 					float positionX = delta.x * moveSensitivityX * Time.deltaTime;
 					positionX = invertMoveX ? positionX : positionX * -1;
 					
-					float positionY = delta.y * moveSensitivityY * Time.deltaTime;
-					positionY = invertMoveY ? positionY : positionY * -1;
-					
-					_camera.transform.position += new Vector3 (positionX, positionY, 0);
+					float positionZ = delta.z * moveSensitivityY * Time.deltaTime;
+					positionZ = invertMoveY ? positionZ : positionZ * -1;
+
+					_camera.transform.position += new Vector3 (positionX, 200, positionZ);
 					
 					scrollDirection = touches[0].deltaPosition.normalized;
 					scrollVelocity = touches[0].deltaPosition.magnitude / touches[0].deltaTime;
@@ -134,15 +134,16 @@ public class TouchCamaraControl : MonoBehaviour {
 		horizontalExtent = _camera.orthographicSize * Screen.width / Screen.height;
 		minX = horizontalExtent - mapWidth / 2.0f;
 		maxX = mapWidth / 2.0f - horizontalExtent;
-		minY = verticalExtent - mapHeight / 2.0f;
-		maxY = mapHeight / 2.0f - verticalExtent;
+		minY = verticalExtent - mapHeight;
+		maxY = mapHeight - verticalExtent;
 	}
 	
 	void LateUpdate ()
 	{
 		Vector3 limitedCameraPosition = _camera.transform.position;
 		limitedCameraPosition.x = Mathf.Clamp (limitedCameraPosition.x, minX, maxX);
-		limitedCameraPosition.y = Mathf.Clamp (limitedCameraPosition.y, minY, maxY);
+		limitedCameraPosition.z = Mathf.Clamp (limitedCameraPosition.z, 300, 420);
+		limitedCameraPosition.y = Mathf.Clamp(limitedCameraPosition.y, 100, 110);
 		_camera.transform.position = limitedCameraPosition;
 	}
 	
