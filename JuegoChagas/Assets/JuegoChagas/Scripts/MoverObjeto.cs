@@ -8,8 +8,8 @@ public class MoverObjeto : MonoBehaviour {
 	public void OnMouseDrag()
 	{
 
-		Ray ray= Camera.main.ScreenPointToRay (Input.mousePosition);
-		puntero = ray.origin;
+
+		puntero = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		puntero.y= transform.position.y;
 		
 
