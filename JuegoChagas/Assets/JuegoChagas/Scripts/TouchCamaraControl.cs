@@ -44,7 +44,7 @@ public class TouchCamaraControl : MonoBehaviour {
 	{
 		if (updateZoomSensitivity)
 		{
-			moveSensitivityX = _camera.orthographicSize / 5.0f;
+			moveSensitivityX = _camera.orthographicSize / 4.0f;
 			moveSensitivityY = _camera.orthographicSize / 5.0f;
 		}
 		
@@ -107,9 +107,9 @@ public class TouchCamaraControl : MonoBehaviour {
 	void LateUpdate ()
 	{
 		Vector3 limitedCameraPosition = _camera.transform.position;
-		limitedCameraPosition.x = Mathf.Clamp (limitedCameraPosition.x, -186, 193);
-		limitedCameraPosition.y = Mathf.Clamp (limitedCameraPosition.y, 126,300);
-		//limitedCameraPosition.z = Mathf.Clamp (limitedCameraPosition.z, 300, 350);
+		limitedCameraPosition.x = Mathf.Clamp (limitedCameraPosition.x, -260,-50);
+		limitedCameraPosition.y = Mathf.Clamp (limitedCameraPosition.y, 300,400);
+		limitedCameraPosition.z = Mathf.Clamp (limitedCameraPosition.z, 0, 10);
 
 		_camera.transform.position = limitedCameraPosition;
 	}
