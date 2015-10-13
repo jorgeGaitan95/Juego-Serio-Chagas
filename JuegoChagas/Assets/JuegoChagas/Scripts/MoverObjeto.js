@@ -5,10 +5,11 @@ var angularDrag = 0.0;
 var distance = 0.2;
 var pushForce = 0.2;
 var attachToCenterOfMass = false;
+var estado=false;
 
 var highlightMaterial : Material;
 private var highlightObject : GameObject;
-private var objeto: GameObject;
+public var objeto: GameObject;
 
 
 private var springJoint : SpringJoint;
@@ -138,18 +139,22 @@ function DragObject (distance : float, hitpoint : Vector3, dir : Vector3)
 
 function OnTriggerStay(col:Collider){
 
+	estado=true;
+	Debug.Log(estado);
 	var i:int;
 	for (i = 0;i < objeto.GetComponent.<Renderer>().materials.Length; i++)
 	{               
-		objeto.GetComponent.<Renderer>().materials[i].color=Color.red;
+		objeto.GetComponent.<Renderer>().materials[i].color=Color.green;
 	}
-};
+}
 
 function OnTriggerExit(col:Collider){
+	estado=false;
 	var i:int;
+	
     for (i = 0;i < objeto.GetComponent.<Renderer>().materials.Length; i++)
-	{               
-		objeto.GetComponent.<Renderer>().materials[i].color=Color.green;
+	{         
+		objeto.GetComponent.<Renderer>().materials[i].color=Color.red;
 	}
 }
 
