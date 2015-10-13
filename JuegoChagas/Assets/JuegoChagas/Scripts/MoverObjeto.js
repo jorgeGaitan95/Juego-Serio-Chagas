@@ -144,7 +144,7 @@ function OnTriggerStay(col:Collider){
 	var i:int;
 	for (i = 0;i < objeto.GetComponent.<Renderer>().materials.Length; i++)
 	{               
-		objeto.GetComponent.<Renderer>().materials[i].color=Color.green;
+		objeto.GetComponent.<Renderer>().materials[i].color=Color.red;
 	}
 }
 
@@ -154,7 +154,7 @@ function OnTriggerExit(col:Collider){
 	
     for (i = 0;i < objeto.GetComponent.<Renderer>().materials.Length; i++)
 	{         
-		objeto.GetComponent.<Renderer>().materials[i].color=Color.red;
+		objeto.GetComponent.<Renderer>().materials[i].color=Color.green;
 	}
 }
 
