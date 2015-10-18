@@ -1,7 +1,7 @@
 ﻿var spring = 50.0;
 var damper = 5.0;
-var drag = 10.0;
-var angularDrag = 0.0;
+var drag = 200.0;
+var angularDrag = 30.0;
 var distance = 0.2;
 var pushForce = 0.2;
 var attachToCenterOfMass = false;
@@ -89,7 +89,7 @@ if(Input.GetMouseButton(0))
  springJoint.damper = damper;
  springJoint.maxDistance = distance;
  springJoint.connectedBody = hit.rigidbody;
- 
+ springJoint.connectedBody.angularDrag=90.0;
  DragObject(hit.distance, hit.point, Camera.main.ScreenPointToRay(Input.mousePosition).direction);
 }
 

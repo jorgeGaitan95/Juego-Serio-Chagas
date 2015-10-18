@@ -107,9 +107,9 @@ public class TouchCamaraControl : MonoBehaviour {
 	void LateUpdate ()
 	{
 		Vector3 limitedCameraPosition = _camera.transform.position;
-		limitedCameraPosition.x = Mathf.Clamp (limitedCameraPosition.x, -260,-50);
-		limitedCameraPosition.y = Mathf.Clamp (limitedCameraPosition.y, 300,400);
-		limitedCameraPosition.z = Mathf.Clamp (limitedCameraPosition.z, 0, 10);
+		limitedCameraPosition.x = Mathf.Clamp (limitedCameraPosition.x, -385,35);
+		limitedCameraPosition.y = Mathf.Clamp (limitedCameraPosition.y, 455,862);
+		limitedCameraPosition.z = Mathf.Clamp (limitedCameraPosition.z, -750, -740);
 
 		_camera.transform.position = limitedCameraPosition;
 	}

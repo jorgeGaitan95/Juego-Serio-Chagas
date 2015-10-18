@@ -12,7 +12,8 @@ public class SeleccionarObjeto : MonoBehaviour {
 		{
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit raycastHit;
-			if (Physics.Raycast (ray, out raycastHit)==true)
+			if (Physics.Raycast (ray, out raycastHit)==true
+			    &&raycastHit.collider.gameObject.tag!="plane")
 			{
 				aux=raycastHit.collider.gameObject;
 			
