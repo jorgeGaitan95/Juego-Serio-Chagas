@@ -17,7 +17,7 @@ public class BarrasJuego : MonoBehaviour {
 	public GUISkin skinExperiencia;
 	public GUISkin skinDinero;
 	public GUISkin skinMadera;
-	public GUISkin skinTienda;
+
 	public GUISkin skinMover;
 	public GUISkin skinNivel;
 
@@ -69,8 +69,7 @@ public class BarrasJuego : MonoBehaviour {
 
 		}
 
-		GUI.skin = skinTienda;
-		GUI.Button (new Rect (30, Screen.height-50, 50, 50), "");
+
 		GUI.Box (new Rect (80, Screen.height - 40, 30, 30), "");
 		GUI.skin = skinMover;
 		GUI.Button (new Rect (80, Screen.height-40, 30, 30), "");
