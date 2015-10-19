@@ -7,8 +7,8 @@ public class TouchCamaraControl : MonoBehaviour {
 	public float moveSensitivityY = 1.0f;
 	public bool updateZoomSensitivity = true;
 	public float orthoZoomSpeed = 0.05f;
-	public float minZoom = 100.0f;
-	public float maxZoom = 200.0f;
+	public float minZoom = 200.0f;
+	public float maxZoom = 400.0f;
 	public bool invertMoveX = false;
 	public bool invertMoveY = false;
 	public float mapWidth = 700.0f;
@@ -29,13 +29,13 @@ public class TouchCamaraControl : MonoBehaviour {
 	{
 		_camera = Camera.main;
 		
-		maxZoom = 0.5f * (mapWidth / _camera.aspect);
+		//maxZoom = 0.5f * (mapWidth / _camera.aspect);
+
+		//if (mapWidth > mapHeight)
+		//	maxZoom = 0.5f * mapHeight;
 		
-		if (mapWidth > mapHeight)
-			maxZoom = 0.5f * mapHeight;
-		
-		if (_camera.orthographicSize > maxZoom)
-			_camera.orthographicSize = maxZoom;
+		//if (_camera.orthographicSize > maxZoom)
+		//	_camera.orthographicSize = maxZoom;
 		
 	
 	}
@@ -107,9 +107,9 @@ public class TouchCamaraControl : MonoBehaviour {
 	void LateUpdate ()
 	{
 		Vector3 limitedCameraPosition = _camera.transform.position;
-		limitedCameraPosition.x = Mathf.Clamp (limitedCameraPosition.x, -385,35);
-		limitedCameraPosition.y = Mathf.Clamp (limitedCameraPosition.y, 455,862);
-		limitedCameraPosition.z = Mathf.Clamp (limitedCameraPosition.z, -750, -740);
+		limitedCameraPosition.x = Mathf.Clamp (limitedCameraPosition.x, -712,-210);
+		limitedCameraPosition.y = Mathf.Clamp (limitedCameraPosition.y, 642,1308);
+		limitedCameraPosition.z = Mathf.Clamp (limitedCameraPosition.z, -740, -700);
 
 		_camera.transform.position = limitedCameraPosition;
 	}

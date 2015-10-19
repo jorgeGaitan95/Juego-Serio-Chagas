@@ -12,11 +12,17 @@ public class BarrasJuego : MonoBehaviour {
 	public int recursos;
 	public int nivel;
 
+	public Texture imgBtnMover;
+	public Texture imgBtnMisiones;
+	public Texture imgExperiencia;
+	public Texture imgRiesgo;
+
 
 	public GUISkin skinRiesgo;
 	public GUISkin skinExperiencia;
 	public GUISkin skinDinero;
 	public GUISkin skinMadera;
+	public GUISkin skinRiesgoImg;
 
 	public GUISkin skinMover;
 	public GUISkin skinNivel;
@@ -24,11 +30,11 @@ public class BarrasJuego : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		experiencia = 40;
+		experiencia = 10;
 		experienciaMaxima = 100;
-		nivelRiesgo = 60;
-		dinero = 500.0f;
-		recursos =50;
+		nivelRiesgo = 10;
+		dinero = 0.0f;
+		recursos =0;
 		nivel = 1;
 	}
 	
@@ -52,26 +58,42 @@ public class BarrasJuego : MonoBehaviour {
 	void OnGUI(){
 		//GUI.skin = skinNivel;
 		//GUI.Button (new Rect (30, 10, 50, 50), ""+nivel);
-		GUI.Box (new Rect (80, 15, 60, 20), "XP" + experiencia);
-		GUI.Box(new  Rect(Screen.width-115,Screen.height-30,100,20),nivelRiesgo+"%");
-		GUI.skin = skinDinero;
-		GUI.Box (new Rect (Screen.width / 2-50, 10, 100, 30), "$"+dinero);
-		GUI.skin = skinMadera;
-		GUI.Box (new Rect (Screen.width - 115, 10, 100, 30), ""+recursos);
 
-		if (nivelRiesgo > 0) {
-			GUI.skin = skinRiesgo;
-			GUI.Box (new Rect (Screen.width - 115, Screen.height - 30, 100 * nivelRiesgo/100, 20), "");
-		}
+
+		GUI.skin = skinDinero;
+		GUI.Box (new Rect (Screen.width / 2-50, 10, 100, 50), "$"+dinero+"     ");
+		GUI.skin = skinMadera;
+		GUI.Box (new Rect (Screen.width - 115, 10, 100, 50), ""+recursos);
+
+
+
+
+
+		GUI.skin = skinMover;
+		GUI.Button (new Rect (80, Screen.height-50, 50, 50), imgBtnMover);
+
+		GUI.BeginGroup (new Rect (25, 3, 150, 60));
+		GUI.Label (new Rect (4, 4, 150, 60), imgExperiencia);
+		GUI.Label (new Rect (58, 5, 60, 20), "Nivel "+nivel);
+
 		if (experiencia > 0) {
 			GUI.skin=skinExperiencia;
-			GUI.Box(new Rect(80,15,60*((float)experiencia/(float)experienciaMaxima),20),"");
-
+			GUI.Box(new Rect(55,26,75*((float)experiencia/(float)experienciaMaxima),20),"");
+			
 		}
 
-
-		GUI.Box (new Rect (80, Screen.height - 40, 30, 30), "");
 		GUI.skin = skinMover;
-		GUI.Button (new Rect (80, Screen.height-40, 30, 30), "");
+		GUI.Label (new Rect (71, 25, 50, 20), "" + experiencia+" XP");
+		GUI.Button (new Rect (0, 0, 65, 65), imgBtnMisiones);
+
+		GUI.EndGroup ();
+		GUI.skin = skinRiesgoImg;
+		GUI.BeginGroup (new Rect (Screen.width - 150, Screen.height - 60, 130, 60));
+		GUI.Box (new Rect (0, 0, 130, 60),nivelRiesgo+"%");
+		if (nivelRiesgo > 0) {
+			GUI.skin = skinRiesgo;
+			GUI.Box (new Rect (59,23, 70 * nivelRiesgo/100, 15), "");
+		}
+		GUI.EndGroup ();
 	}
 }

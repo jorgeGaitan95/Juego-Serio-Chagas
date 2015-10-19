@@ -5,6 +5,7 @@ public class Tienda : MonoBehaviour {
 
 	public GUISkin skinTienda;
 	public GUISkin skinBotonAtras;
+	public GUISkin skinBoton;
 
 
 	public Texture imgBoton;
@@ -18,6 +19,7 @@ public class Tienda : MonoBehaviour {
 
 
 	public Texture imgChoza;
+	public Texture imgChozaNvl1;
 	public Texture imgCasa;
 
 	public Texture imgPalmaReal;
@@ -39,7 +41,7 @@ public class Tienda : MonoBehaviour {
 
 	void OnGUI(){
 
-
+		GUI.skin = skinBoton;
 		if (GUI.Button (new Rect (30, Screen.height - 50, 50, 50), imgBoton)) {
 			mostrarTienda=true;
 		}
@@ -95,8 +97,8 @@ public class Tienda : MonoBehaviour {
 
 					GUI.BeginGroup (new Rect (tamañoGrupoImgX, 0, tamañoGrupoImgX, tamañoGrupoImgY));
 					GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "Choza Nvl 1");
-					GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), imgChoza);
-					GUI.Label (new Rect (5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "70");
+					GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), imgChozaNvl1);
+					GUI.Label (new Rect (5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "200");
 					GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar");
 					GUI.EndGroup ();
 
