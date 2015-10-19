@@ -29,9 +29,11 @@ public class Tienda : MonoBehaviour {
 	private bool construcciones;
 	private bool arboles;
 	private bool animales;
+
+	BarrasJuego BJ;
 	// Use this for initialization
 	void Start () {
-	
+		BJ= GameObject.Find ("Main Camera").GetComponent<BarrasJuego> ();
 	}
 	
 	// Update is called once per frame
@@ -92,7 +94,18 @@ public class Tienda : MonoBehaviour {
 					GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "Choza");
 					GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), imgChoza);
 					GUI.Label (new Rect (5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "70");
-					GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar");
+					if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar")){
+					if(BJ.recursos>70)
+						{
+							Vector3 posicion= new Vector3(-774.0f,343.52f,-291.325f);
+							Vector3 rotacion= new Vector3(0,180,0);
+							GameObject aux=GameObject.Find("Choza");
+							Instantiate(aux,posicion,aux.transform.rotation);
+							BJ.recursos-=70;
+						}
+
+					
+					}
 					GUI.EndGroup ();
 
 					GUI.BeginGroup (new Rect (tamañoGrupoImgX, 0, tamañoGrupoImgX, tamañoGrupoImgY));
@@ -117,8 +130,17 @@ public class Tienda : MonoBehaviour {
 					GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "Palma Real");
 					GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), imgPalmaReal);
 					GUI.Label (new Rect (0, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "Gratis");
-					GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar");
-					GUI.EndGroup ();
+					if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar"))
+						{
+							Vector3 posicion= new Vector3(-404.0f,410.0f,5123.0f);
+							GameObject aux=GameObject.Find("Date_Palm");
+							Instantiate(aux,posicion,aux.transform.rotation);
+							
+						}	
+				
+				
+				
+				GUI.EndGroup ();
 					
 					GUI.BeginGroup (new Rect (tamañoGrupoImgX, 0, tamañoGrupoImgX, tamañoGrupoImgY));
 					GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "palma");
