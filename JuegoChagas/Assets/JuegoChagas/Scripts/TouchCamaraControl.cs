@@ -7,8 +7,8 @@ public class TouchCamaraControl : MonoBehaviour {
 	public float moveSensitivityY = 1.0f;
 	public bool updateZoomSensitivity = true;
 	public float orthoZoomSpeed = 0.05f;
-	public float minZoom = 200.0f;
-	public float maxZoom = 400.0f;
+	public float minZoom = 60.0f;
+	public float maxZoom = 120.0f;
 	public bool invertMoveX = false;
 	public bool invertMoveY = false;
 	public float mapWidth = 700.0f;
@@ -42,10 +42,11 @@ public class TouchCamaraControl : MonoBehaviour {
 	
 	void Update () 
 	{
+
 		if (updateZoomSensitivity)
 		{
 			moveSensitivityX = _camera.orthographicSize / 4.0f;
-			moveSensitivityY = _camera.orthographicSize / 5.0f;
+			moveSensitivityY = _camera.orthographicSize / 4.0f;
 		}
 		
 		Touch[] touches = Input.touches;
@@ -100,6 +101,31 @@ public class TouchCamaraControl : MonoBehaviour {
 					timeTouchPhaseEnded = Time.time;
 				}
 			}
+
+			if (touches.Length == 2)
+			{
+				Vector2 cameraViewsize = new Vector2 (_camera.pixelWidth, _camera.pixelHeight);
+				
+				Touch touchOne = touches[0];
+				Touch touchTwo = touches[1];
+				
+				Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+				Vector2 touchTwoPrevPos = touchTwo.position - touchTwo.deltaPosition;
+				
+				float prevTouchDeltaMag = (touchOnePrevPos - touchTwoPrevPos).magnitude;
+				float touchDeltaMag = (touchOne.position - touchTwo.position).magnitude;
+				
+				float deltaMagDiff = prevTouchDeltaMag - touchDeltaMag;
+				
+				_camera.transform.position += _camera.transform.TransformDirection ((touchOnePrevPos + touchTwoPrevPos - cameraViewsize) * _camera.orthographicSize / cameraViewsize.y);
+				
+				_camera.orthographicSize += deltaMagDiff * orthoZoomSpeed;
+				_camera.orthographicSize = Mathf.Clamp (_camera.orthographicSize, minZoom, maxZoom) - 0.001f;
+				
+				_camera.transform.position -= _camera.transform.TransformDirection ((touchOne.position + touchTwo.position - cameraViewsize) * _camera.orthographicSize / cameraViewsize.y);
+				
+				LateUpdate();
+			}
 		}
 	}
 
@@ -107,15 +133,18 @@ public class TouchCamaraControl : MonoBehaviour {
 	void LateUpdate ()
 	{
 		Vector3 limitedCameraPosition = _camera.transform.position;
-		limitedCameraPosition.x = Mathf.Clamp (limitedCameraPosition.x, -712,-210);
-		limitedCameraPosition.y = Mathf.Clamp (limitedCameraPosition.y, 642,1308);
-		limitedCameraPosition.z = Mathf.Clamp (limitedCameraPosition.z, -740, -700);
+		if (_camera.orthographicSize > 90) {
+			limitedCameraPosition.x = Mathf.Clamp (limitedCameraPosition.x, 16, 625);
+			limitedCameraPosition.y = Mathf.Clamp (limitedCameraPosition.y, 248, 833);
+			limitedCameraPosition.z = Mathf.Clamp (limitedCameraPosition.z, 100, 110);
+		} else {
+			limitedCameraPosition.x = Mathf.Clamp (limitedCameraPosition.x, -38, 715);
+			limitedCameraPosition.y = Mathf.Clamp (limitedCameraPosition.y, 40, 833);
+			limitedCameraPosition.z = Mathf.Clamp (limitedCameraPosition.z, 100, 110);
+		}
 
 		_camera.transform.position = limitedCameraPosition;
 	}
 	
-	void OnDrawGizmos ()
-	{
-		Gizmos.DrawWireCube (Vector3.zero, new Vector3 (mapWidth, mapHeight, 0));
-	}
+
 }

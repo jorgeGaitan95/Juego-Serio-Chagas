@@ -1,0 +1,51 @@
+newmtl choza_obj2:default1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd choza.obj_default.png
+Ni 1.00
+Ks 1.00 1.00 1.00
+Ns 128.00
+newmtl choza_obj2:ground_2
+illum 4
+Kd 0.66 0.66 0.66
+Ka 0.66 0.66 0.66
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl choza_obj2:room_5_28
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd choza.obj_room_5_26.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl choza_obj2:wall_1_8
+illum 4
+Kd 1.00 1.00 1.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl choza_obj2:wall_1_10
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd choza.obj_wall_1_3.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl choza_obj2:white
+illum 4
+Kd 1.00 1.00 1.00
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.30 0.30 0.30
+Ns 60.00
