@@ -3,87 +3,76 @@ using System.Collections;
 
 public class asha : MonoBehaviour {
 
-	GameObject aux;
-	public bool mover=true;
-	bool estado;
+	public int experiencia;
+	public int  experienciaMaxima;
+
+	public int nivelRiesgo;
+
+	public float dinero;
+	public int recursos;
+	public int nivel;
 
 
-	BarrasJuego player;
-	Mision1 M1;
-	
-	void Start(){
-		player = GameObject.Find ("Main Camera").GetComponent<BarrasJuego> ();
-//		M1 = GameObject.Find ("Mision1").GetComponent<Mision1> ();
-		estado = false;
+	public GUISkin skinRiesgo;
+	public GUISkin skinExperiencia;
+	public GUISkin skinDinero;
+	public GUISkin skinMadera;
+	public GUISkin skinTienda;
+	public GUISkin skinMover;
+	public GUISkin skinNivel;
+
+
+	// Use this for initialization
+	void Start () {
+		experiencia = 40;
+		experienciaMaxima = 100;
+		nivelRiesgo = 60;
+		dinero = 500.0f;
+		recursos =50;
+		nivel = 1;
 	}
+	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetMouseButtonDown(0))
-		{
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			RaycastHit raycastHit;
-			if (Physics.Raycast (ray, out raycastHit)==true
-			    &&raycastHit.collider.gameObject.tag!="plane")
-			{
-
-				aux=raycastHit.collider.gameObject;
-
-		
-				if(aux.tag=="palmaReal"&&mover==false)
-				{
-					aux=raycastHit.collider.gameObject;
-					estado=true;
-				} 
-				if(aux.GetComponent<Rigidbody>()==true)
-				{
-					aux.GetComponent<Rigidbody>().isKinematic=false;
-				}
-
-				for (int i = 0; i < aux.GetComponent<Renderer>().materials.Length; i++)
-		        {               
-			     aux.GetComponent<Renderer>().materials[i].color=Color.green;
-				}
-			}
-
+		if (nivelRiesgo > 100) {
+			nivelRiesgo=100;
 		}
-
-		if (Input.GetMouseButtonUp (0)&&estado==false) {
-
-			if (aux != null) {
-				for (int i = 0; i < aux.GetComponent<Renderer>().materials.Length; i++) {               
-					aux.GetComponent<Renderer> ().materials [i].color = Color.white;
-				}
-				aux = null;
-			}
+		if (nivelRiesgo < 0) {
+			nivelRiesgo = 0;
 		}
+		if (experiencia > experienciaMaxima) {
+			experiencia = experienciaMaxima;
+		}
+		if (experiencia < 0) {
+			experiencia = 0;
+		}
+	
 	}
 
 	void OnGUI(){
-	
-		if (estado == true) {
-			
-			//Vector3 posicion=Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			//float disPant=(Mathf.Cos(Camera.main.orthographicSize/2)*(Screen.width/2))/
-			//	Mathf.Sin(Camera.main.orthographicSize/2);
-			//float posX=(posicion.x/posicion.z)*disPant;
-			//float posY=(posicion.y/posicion.z)*disPant;
-			//float posZ=posicion.z;
-			//Debug.Log("Asha"+posX+" "+posY+" "+ posZ);
-			if(GUI.Button(new Rect(Screen.width/2,Screen.height/2,65,30),"Talar"))
-			{
-				Destroy(aux);
-				player.recursos+=30;
-				player.nivelRiesgo+=5;
-				if(M1.finalizada==false)
-					M1.progreso+=1;
-				estado=false;
-			}
-			if(GUI.Button(new Rect(Screen.width/2,Screen.height/2+35,65,30),"Cancelar"))
-			{
-				estado=false;
-			}
+		//GUI.skin = skinNivel;
+		//GUI.Button (new Rect (30, 10, 50, 50), ""+nivel);
+		GUI.Box (new Rect (80, 15, 60, 20), "XP" + experiencia);
+		GUI.Box(new  Rect(Screen.width-115,Screen.height-30,100,20),nivelRiesgo+"%");
+		GUI.skin = skinDinero;
+		GUI.Box (new Rect (Screen.width / 2-50, 10, 100, 30), "$"+dinero);
+		GUI.skin = skinMadera;
+		GUI.Box (new Rect (Screen.width - 115, 10, 100, 30), ""+recursos);
+
+		if (nivelRiesgo > 0) {
+			GUI.skin = skinRiesgo;
+			GUI.Box (new Rect (Screen.width - 115, Screen.height - 30, 100 * nivelRiesgo/100, 20), "");
 		}
-		
-	
+		if (experiencia > 0) {
+			GUI.skin=skinExperiencia;
+			GUI.Box(new Rect(80,15,60*((float)experiencia/(float)experienciaMaxima),20),"");
+
+		}
+
+		GUI.skin = skinTienda;
+		GUI.Button (new Rect (30, Screen.height-50, 50, 50), "");
+		GUI.Box (new Rect (80, Screen.height - 40, 30, 30), "");
+		GUI.skin = skinMover;
+		GUI.Button (new Rect (80, Screen.height-40, 30, 30), "");
 	}
 }

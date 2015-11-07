@@ -9,6 +9,9 @@ public class SeleccionarObjeto : MonoBehaviour {
 
 	BarrasJuego player;
 	Mision1 M1;
+	bool palmaMovida = false;
+	Vector3 posicionInicalpalma=Vector3.zero;
+	GameObject nuevaPalma;
 
 	void Start(){
 		player = GameObject.Find ("Main Camera").GetComponent<BarrasJuego> ();
@@ -30,6 +33,8 @@ public class SeleccionarObjeto : MonoBehaviour {
 
 	void moverObjeto(){
 
+
+
 		if (Input.GetMouseButtonDown (0)) {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit raycastHit;
@@ -45,15 +50,35 @@ public class SeleccionarObjeto : MonoBehaviour {
 				for (int i = 0; i < auxiliar.GetComponent<Renderer>().materials.Length; i++) {               
 					auxiliar.GetComponent<Renderer> ().materials [i].color = Color.green;
 				}
+
+				if(auxiliar.tag=="palmaAutogenerada")
+				{
+					palmaMovida=true;
+					posicionInicalpalma=auxiliar.transform.position;
+				}else
+					palmaMovida=false;
+				
+
 			}
 		}
 		
 		if (Input.GetMouseButtonUp (0)) {
-			
+
 			if (auxiliar != null) {
+
+				if(palmaMovida==true&&posicionInicalpalma!=auxiliar.transform.position)
+				{
+					RenovarPalma renovar=auxiliar.GetComponent<RenovarPalma>();
+					renovar.posicionObjeto=posicionInicalpalma;
+					renovar.renovar=true;
+					renovar.objeto=auxiliar;
+				}
+
 				for (int i = 0; i < auxiliar.GetComponent<Renderer>().materials.Length; i++) {               
 					auxiliar.GetComponent<Renderer> ().materials [i].color = Color.white;
 				}
+
+
 				auxiliar = null;
 			}
 		}
@@ -69,10 +94,10 @@ public class SeleccionarObjeto : MonoBehaviour {
 				auxiliar = raycastHit.collider.gameObject;
 				
 				
-				if (auxiliar.tag == "palmaReal") {
-					auxiliar = raycastHit.collider.gameObject;
+				if (auxiliar.tag == "palmaReal"||auxiliar.tag=="palmaAutogenerada") {
 					mostrarMenu = true;
-				} 
+				}else
+					mostrarMenu=false;
 			}
 		}
 	}
@@ -80,27 +105,30 @@ public class SeleccionarObjeto : MonoBehaviour {
 	void OnGUI(){
 		
 		if (mostrarMenu == true) {
-			
-			//Vector3 posicion=Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			//float disPant=(Mathf.Cos(Camera.main.orthographicSize/2)*(Screen.width/2))/
-			//	Mathf.Sin(Camera.main.orthographicSize/2);
-			//float posX=(posicion.x/posicion.z)*disPant;
-			//float posY=(posicion.y/posicion.z)*disPant;
-			//float posZ=posicion.z;
-			//Debug.Log("Asha"+posX+" "+posY+" "+ posZ);
-			if(GUI.Button(new Rect(Screen.width/2,Screen.height/2,65,30),"Talar"))
+
+			Vector3 posicion=Camera.main.WorldToScreenPoint(auxiliar.transform.position);
+			posicion.y=Screen.height-posicion.y;
+
+			if(GUI.Button(new Rect(posicion.x,posicion.y,65,20),"Talar"))
 			{
+				if(auxiliar.tag=="palmaAutogenerada")
+				{	
+					auxiliar.GetComponent<RenovarPalma>().renovar=true;
+					Debug.Log("Tio has cortado una palma autogeneda, que cojones!!! XD");
+				}else{
 				Destroy(auxiliar);
 				player.recursos+=30;
 				player.nivelRiesgo+=5;
 				if(M1.finalizada==false)
 					M1.progreso+=1;
 				mostrarMenu=false;
+				}
 			}
-			if(GUI.Button(new Rect(Screen.width/2,Screen.height/2+35,65,30),"Cancelar"))
+			if(GUI.Button(new Rect(posicion.x,posicion.y+23,65,20),"Cancelar"))
 			{
 				mostrarMenu=false;
 			}
+
 		}
 		
 		

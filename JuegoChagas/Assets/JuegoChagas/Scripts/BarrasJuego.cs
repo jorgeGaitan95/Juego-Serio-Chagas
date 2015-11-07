@@ -27,7 +27,7 @@ public class BarrasJuego : MonoBehaviour {
 	public GUISkin skinMover;
 	public GUISkin skinNivel;
 
-
+	SeleccionarObjeto moverObjetos;
 	// Use this for initialization
 	void Start () {
 		experiencia = 10;
@@ -36,6 +36,7 @@ public class BarrasJuego : MonoBehaviour {
 		dinero = 0.0f;
 		recursos =0;
 		nivel = 1;
+		moverObjetos= GameObject.Find ("Main Camera").GetComponent<SeleccionarObjeto> ();
 	}
 	
 	// Update is called once per frame
@@ -70,7 +71,14 @@ public class BarrasJuego : MonoBehaviour {
 
 
 		GUI.skin = skinMover;
-		GUI.Button (new Rect (80, Screen.height-50, 50, 50), imgBtnMover);
+
+		if (GUI.Button (new Rect (80, Screen.height - 50, 50, 50), imgBtnMover)) {
+
+			if(moverObjetos.moverObjetos==true)
+				moverObjetos.moverObjetos=false;
+			else
+				moverObjetos.moverObjetos=true;
+		}
 
 		GUI.BeginGroup (new Rect (25, 3, 150, 60));
 		GUI.Label (new Rect (4, 4, 150, 60), imgExperiencia);
