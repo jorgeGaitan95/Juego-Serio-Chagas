@@ -27,13 +27,9 @@ public class SeleccionarObjeto : MonoBehaviour {
 			moverObjeto ();
 		} else
 			clickObjeto ();
-		
-		
 	}
 
 	void moverObjeto(){
-
-
 
 		if (Input.GetMouseButtonDown (0)) {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
@@ -58,8 +54,7 @@ public class SeleccionarObjeto : MonoBehaviour {
 				}else
 					palmaMovida=false;
 				
-
-			}
+				}
 		}
 		
 		if (Input.GetMouseButtonUp (0)) {
@@ -72,13 +67,12 @@ public class SeleccionarObjeto : MonoBehaviour {
 					renovar.posicionObjeto=posicionInicalpalma;
 					renovar.renovar=true;
 					renovar.objeto=auxiliar;
+					auxiliar.tag="palmaReal";
 				}
 
 				for (int i = 0; i < auxiliar.GetComponent<Renderer>().materials.Length; i++) {               
 					auxiliar.GetComponent<Renderer> ().materials [i].color = Color.white;
 				}
-
-
 				auxiliar = null;
 			}
 		}
@@ -113,16 +107,21 @@ public class SeleccionarObjeto : MonoBehaviour {
 			{
 				if(auxiliar.tag=="palmaAutogenerada")
 				{	
-					auxiliar.GetComponent<RenovarPalma>().renovar=true;
-					Debug.Log("Tio has cortado una palma autogeneda, que cojones!!! XD");
+					posicionInicalpalma=auxiliar.transform.position;
+					RenovarPalma renovar=auxiliar.GetComponent<RenovarPalma>();
+					renovar.objeto=auxiliar;
+					renovar.posicionObjeto=posicionInicalpalma;
+					renovar.renovar=true;
+					renovar.eliminarCasa=true;
 				}else{
-				Destroy(auxiliar);
+					Destroy(auxiliar);
+				}
 				player.recursos+=30;
 				player.nivelRiesgo+=5;
 				if(M1.finalizada==false)
 					M1.progreso+=1;
 				mostrarMenu=false;
-				}
+
 			}
 			if(GUI.Button(new Rect(posicion.x,posicion.y+23,65,20),"Cancelar"))
 			{

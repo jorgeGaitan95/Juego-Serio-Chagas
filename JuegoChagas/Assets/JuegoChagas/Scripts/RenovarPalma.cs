@@ -11,34 +11,65 @@ public class RenovarPalma : MonoBehaviour {
 	public GUISkin skinProgreso;
 	float tiempoActual=0;
 	float tiempoMaximo=1;
-	public bool tiempoCumplido=false;
+	public bool eliminarCasa;
+	bool tiempoTerminado;
 
 	// Use this for initialization
 	void Start () {
 		renovar = false;
 		mostrarBarraEstado = false;
 		progreso = 0;
+		tiempoTerminado = false;
+		eliminarCasa = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(progreso<61&&renovar==true){
-
-				mostrarBarraEstado=true;
-				tiempoActual+=Time.deltaTime;
-
-				if(tiempoActual>=tiempoMaximo){
-					tiempoActual=0;
-					progreso++;
-				}
-
-				if (progreso == 60){
-					mostrarBarraEstado=false;
-					
-				}
+		if (renovar == true) {
+			if (eliminarCasa == true) {
+				objeto.transform.position = new Vector3 (posicionObjeto.x, -300, posicionObjeto.z);
+			}
+			contabilizarTiempo();
 		}
+		if (tiempoTerminado == true) {
+			if(eliminarCasa==true){
+				GameObject auxiliar=objeto;
+				objeto=Instantiate(objeto);
+				objeto.transform.position=posicionObjeto;
+				objeto.name="palma";
+				Destroy(auxiliar);
+			}else
+			{
+				objeto=Instantiate(objeto);
+				objeto.transform.position=posicionObjeto;
+				objeto.name="palma";
+			}
+			tiempoTerminado=false;
+		}
+
 	}
 
+	void contabilizarTiempo()
+	{
+		if(progreso<61){
+			
+			mostrarBarraEstado=true;
+			tiempoActual+=Time.deltaTime;
+			
+			if(tiempoActual>=tiempoMaximo){
+				tiempoActual=0;
+				progreso++;
+			}
+			
+			if (progreso == 60){
+				mostrarBarraEstado=false;
+				renovar=false;
+				progreso=0;
+				tiempoTerminado=true;
+			}
+		}
+		
+	}
 	void OnGUI(){
 		if (mostrarBarraEstado == true) {
 			Vector3 posicion=Camera.main.WorldToScreenPoint(posicionObjeto);
