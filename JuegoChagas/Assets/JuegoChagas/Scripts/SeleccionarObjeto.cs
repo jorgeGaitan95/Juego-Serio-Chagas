@@ -8,16 +8,18 @@ public class SeleccionarObjeto : MonoBehaviour {
 	bool mostrarMenu;
 
 	BarrasJuego player;
-	Mision1 M1;
+	Misiones misiones;
 	bool palmaMovida = false;
 	Vector3 posicionInicalpalma=Vector3.zero;
 	GameObject nuevaPalma;
 
+	int numeroPalmasMision1;
 	void Start(){
 		player = GameObject.Find ("Main Camera").GetComponent<BarrasJuego> ();
-		M1 = GameObject.Find ("Mision1").GetComponent<Mision1> ();
+		misiones = GameObject.Find ("Misiones").GetComponent<Misiones> ();
 		mostrarMenu = false;
 		moverObjetos = false;
+		numeroPalmasMision1 = 0;
 	}
 	
 	// Update is called once per frame
@@ -42,10 +44,12 @@ public class SeleccionarObjeto : MonoBehaviour {
 				if (auxiliar.GetComponent<Rigidbody> () == true) {
 					auxiliar.GetComponent<Rigidbody> ().isKinematic = false;
 				}
-				
+
+
 				for (int i = 0; i < auxiliar.GetComponent<Renderer>().materials.Length; i++) {               
 					auxiliar.GetComponent<Renderer> ().materials [i].color = Color.green;
 				}
+			
 
 				if(auxiliar.tag=="palmaAutogenerada")
 				{
@@ -83,10 +87,12 @@ public class SeleccionarObjeto : MonoBehaviour {
 
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit raycastHit;
-			if (Physics.Raycast (ray, out raycastHit) == true && raycastHit.collider.gameObject.tag != "plane") {
+			if (Physics.Raycast (ray, out raycastHit) == true && raycastHit.collider.gameObject.tag != "plane" ) {
 				
 				auxiliar = raycastHit.collider.gameObject;
-				
+
+				if(auxiliar.tag=="plane")
+					Debug.Log("terreno");
 				
 				if (auxiliar.tag == "palmaReal"||auxiliar.tag=="palmaAutogenerada") {
 					mostrarMenu = true;
@@ -112,14 +118,17 @@ public class SeleccionarObjeto : MonoBehaviour {
 					renovar.objeto=auxiliar;
 					renovar.posicionObjeto=posicionInicalpalma;
 					renovar.renovar=true;
-					renovar.eliminarCasa=true;
+					renovar.eliminarPalma=true;
 				}else{
 					Destroy(auxiliar);
 				}
 				player.recursos+=30;
 				player.nivelRiesgo+=5;
-				if(M1.finalizada==false)
-					M1.progreso+=1;
+				if(misiones.buscarMision("Mision1")==true)
+					if(numeroPalmasMision1<3){
+					numeroPalmasMision1+=1;
+					misiones.misionSeleccionada.GetComponent<Mision>().progreso+=1;
+				}
 				mostrarMenu=false;
 
 			}

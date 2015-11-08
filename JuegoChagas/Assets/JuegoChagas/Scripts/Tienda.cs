@@ -104,7 +104,7 @@ public class Tienda : MonoBehaviour {
 
 					GUI.BeginGroup (new Rect (2 * tamañoGrupoImgX, 0, tamañoGrupoImgX, tamañoGrupoImgY));
 					GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "Casa");
-			GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), imgCasa);
+					GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), imgCasa);
 					GUI.Label (new Rect (5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "$300");
 					GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar");
 					GUI.EndGroup ();

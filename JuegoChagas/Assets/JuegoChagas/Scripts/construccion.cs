@@ -59,7 +59,9 @@ public class construccion : MonoBehaviour {
 					BrokenPlanks.gameObject.SetActive(true);
 					padre=GameObject.Find("ConstruccionesJuego");
 					objetoConstruccion.transform.parent=padre.transform;
-					Destroy(gameObject);
+					Destroy(this.GetComponent<BoxCollider>());
+					objetoConstruccion.AddComponent<BoxCollider>();
+					Destroy(gameObject,4.0f);
 				}
 			}
 

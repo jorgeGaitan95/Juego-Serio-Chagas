@@ -1,0 +1,62 @@
+newmtl flblonde2
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd Casa-de-perros2_redbrick.png
+Ni 1.00
+Ks 0.01 0.01 0.01
+Ns 1.00
+newmtl ground_15
+illum 4
+Kd 0.66 0.66 0.66
+Ka 0.66 0.66 0.66
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl paintedwhite2
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd Casa-de-perros2_paintedwhite.png
+Ni 1.00
+Ks 0.80 0.80 0.80
+Ns 103.00
+newmtl redbrick2
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd Casa-de-perros2_redbrick.png
+Ni 1.00
+Ks 0.01 0.01 0.01
+Ns 1.00
+newmtl room_6_33
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd Casa-de-perros2_room_6_32.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl wall_1_26
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd Casa-de-perros2_wall_1_2.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl white10
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd Casa-de-perros2_paintedwhite.png
+Ni 1.00
+Ks 0.55 0.55 0.55
+Ns 70.00

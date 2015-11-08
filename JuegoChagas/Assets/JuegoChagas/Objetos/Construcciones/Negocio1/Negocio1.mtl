@@ -1,0 +1,234 @@
+newmtl Glass
+illum 4
+Kd 0.05 0.05 0.05
+Ka 0.00 0.00 0.00
+Tf 0.50 0.50 0.50
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 1.00
+newmtl Glass14
+illum 4
+Kd 0.05 0.05 0.05
+Ka 0.00 0.00 0.00
+Tf 0.50 0.50 0.50
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 1.00
+newmtl Picture_1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd otra_vez_Picture_1.png
+Ni 1.00
+Ks 0.06 0.06 0.06
+Ns 8.00
+newmtl Picture_5
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd otra_vez_Picture_1.png
+Ni 1.00
+Ks 0.06 0.06 0.06
+Ns 8.00
+newmtl Picture_24
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd negocio_Picture_1.png
+Ni 1.00
+Ks 0.06 0.06 0.06
+Ns 8.00
+newmtl Picture_26
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd negocio_Picture_1.png
+Ni 1.00
+Ks 0.06 0.06 0.06
+Ns 8.00
+newmtl Sand
+illum 4
+Kd 0.95 0.95 0.95
+Ka 0.95 0.95 0.95
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.01 0.01 0.01
+Ns 1.00
+newmtl Sand10
+illum 4
+Kd 0.95 0.95 0.95
+Ka 0.95 0.95 0.95
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.01 0.01 0.01
+Ns 1.00
+newmtl default1
+illum 4
+Kd 0.71 0.70 0.65
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.30 0.30 0.30
+Ns 128.00
+newmtl default23
+illum 4
+Kd 0.71 0.70 0.65
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.30 0.30 0.30
+Ns 128.00
+newmtl default_PolyMesh_1_None_None_155
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd otra_vez_default_PolyMesh_1_None_None_155.png
+Ni 1.00
+Ks 1.00 1.00 1.00
+Ns 128.00
+newmtl default_PolyMesh_1_None_None_169
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd negocio_default_PolyMesh_1_None_None_155.png
+Ni 1.00
+Ks 1.00 1.00 1.00
+Ns 128.00
+newmtl flltgrey
+illum 4
+Kd 0.82 0.82 0.82
+Ka 0.52 0.52 0.52
+Tf 0.50 0.50 0.50
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 1.00
+newmtl flltgrey14
+illum 4
+Kd 0.82 0.82 0.82
+Ka 0.52 0.52 0.52
+Tf 0.50 0.50 0.50
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 1.00
+newmtl ground_2
+illum 4
+Kd 0.66 0.66 0.66
+Ka 0.66 0.66 0.66
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl ground_34
+illum 4
+Kd 0.66 0.66 0.66
+Ka 0.66 0.66 0.66
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl lighttan
+illum 4
+Kd 0.70 0.42 0.22
+Ka 0.10 0.05 0.02
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.83 0.81 0.59
+Ns 128.00
+newmtl lighttan14
+illum 4
+Kd 0.70 0.42 0.22
+Ka 0.10 0.05 0.02
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.83 0.81 0.59
+Ns 128.00
+newmtl mattblack
+illum 4
+Kd 0.12 0.12 0.12
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.27 0.27 0.27
+Ns 57.00
+newmtl mattblack10
+illum 4
+Kd 0.12 0.12 0.12
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.27 0.27 0.27
+Ns 57.00
+newmtl mattblack_Tube_1_119
+illum 4
+Kd 0.95 0.95 0.95
+Ka 0.95 0.95 0.95
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.45 0.45 0.45
+Ns 57.00
+newmtl mattblack_Tube_1_129
+illum 4
+Kd 0.95 0.95 0.95
+Ka 0.95 0.95 0.95
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.45 0.45 0.45
+Ns 57.00
+newmtl room_14_81
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd otra_vez_room_14_80.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl room_14_94
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd negocio_room_14_80.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl wall_1_8
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd otra_vez_wall_1_2.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl wall_1_54
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd negocio_wall_1_2.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl white
+illum 4
+Kd 0.85 0.85 0.85
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.31 0.31 0.31
+Ns 75.00
+newmtl white24
+illum 4
+Kd 0.85 0.85 0.85
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.31 0.31 0.31
+Ns 75.00

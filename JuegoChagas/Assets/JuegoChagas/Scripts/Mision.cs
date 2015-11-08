@@ -11,14 +11,13 @@ public class Mision : MonoBehaviour {
 	public bool finalizada;
 	public bool mostrarMensaje;
 	public int progreso;
-	int numeroPasos;
+	public int numeroPasos;
 	BarrasJuego BJ;
 
 	// Use this for initialization
 	void Start () {
 		BJ= GameObject.Find ("Main Camera").GetComponent<BarrasJuego> ();
 		progreso = 0;
-		numeroPasos = 3;
 	}
 	
 	// Update is called once per frame
@@ -28,6 +27,9 @@ public class Mision : MonoBehaviour {
 			BJ.dinero += 200;
 			BJ.experiencia += 40;
 			finalizada=true;
+			GameObject.Find("Misiones").GetComponent<Misiones>().actualizarMisiones();
+			mostarMensaje();
+			Destroy(gameObject);
 		}
 	}
 

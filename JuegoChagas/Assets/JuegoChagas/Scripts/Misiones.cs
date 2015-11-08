@@ -11,9 +11,8 @@ public class Misiones : MonoBehaviour {
 	public Texture imgBtnMisiones;
 	
 	//VARIABLES DE LA LOGICA
-	GameObject misionSeleccionada;
+	public GameObject misionSeleccionada;
 	public GameObject[] misiones;
-	int misionEscojida;
 	
 	
 	// Use this for initialization
@@ -22,21 +21,22 @@ public class Misiones : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		actualizarMisiones ();
 	}
 	
 	//verifica que la mision si este visible para el jugador
 	public bool buscarMision(string nombre){
 		for (int i=0; i<3; i++) {
 			if(misiones[i].name==nombre)
-				if(misiones[i].GetComponent<Mision1>().activada==true)
+				if(misiones[i].GetComponent<Mision>().activada==true){
+				misionSeleccionada=misiones[i];
 				return true;
+			}
 		}
 		return false;
 	}
 
 	//actualiza la posicion de las misiones
-	void actualizarMisiones(){
+	public void actualizarMisiones(){
 		for (int i=0; i<3; i++) {
 			if(misiones[i]!=null&&misiones[i].GetComponent<Mision>().finalizada==true)
 				misiones[i]=null;
@@ -68,19 +68,19 @@ public class Misiones : MonoBehaviour {
 				mostrarMisiones=false;
 			}
 
-			if(GUI.Button (new Rect (35, 90, 40, 40), imgBoton)){
+			if(GUI.Button (new Rect (25, 90, 60, 60), imgBoton)){
 				Mision scriptMision=misiones[0].GetComponent<Mision>();
 				scriptMision.activada=true;
 				scriptMision.mostarMensaje();
 			}
 
-			if(GUI.Button (new Rect (35, 130, 40, 40), imgBoton)){
+			if(GUI.Button (new Rect (25, 150, 60, 60), imgBoton)){
 				Mision scriptMision=misiones[1].GetComponent<Mision>();
 				scriptMision.activada=true;
 				scriptMision.mostarMensaje();
 			}
 
-			if(GUI.Button (new Rect (35, 170, 40, 40), imgBoton)){
+			if(GUI.Button (new Rect (25, 210, 60, 60), imgBoton)){
 				Mision scriptMision=misiones[2].GetComponent<Mision>();
 				scriptMision.activada=true;
 				scriptMision.mostarMensaje();

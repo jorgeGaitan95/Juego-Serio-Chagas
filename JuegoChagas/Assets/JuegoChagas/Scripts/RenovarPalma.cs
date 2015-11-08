@@ -11,7 +11,7 @@ public class RenovarPalma : MonoBehaviour {
 	public GUISkin skinProgreso;
 	float tiempoActual=0;
 	float tiempoMaximo=1;
-	public bool eliminarCasa;
+	public bool eliminarPalma;
 	bool tiempoTerminado;
 
 	// Use this for initialization
@@ -20,19 +20,19 @@ public class RenovarPalma : MonoBehaviour {
 		mostrarBarraEstado = false;
 		progreso = 0;
 		tiempoTerminado = false;
-		eliminarCasa = false;
+		eliminarPalma = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (renovar == true) {
-			if (eliminarCasa == true) {
-				objeto.transform.position = new Vector3 (posicionObjeto.x, -300, posicionObjeto.z);
+			if (eliminarPalma == true) {
+				objeto.transform.position = new Vector3 (posicionObjeto.x,0,-40);
 			}
 			contabilizarTiempo();
 		}
 		if (tiempoTerminado == true) {
-			if(eliminarCasa==true){
+			if(eliminarPalma==true){
 				GameObject auxiliar=objeto;
 				objeto=Instantiate(objeto);
 				objeto.transform.position=posicionObjeto;

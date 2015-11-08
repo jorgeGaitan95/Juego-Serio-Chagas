@@ -21,7 +21,7 @@ if(Input.GetMouseButtonDown(0))
 {
 	var ray1:Ray= Camera.main.ScreenPointToRay (Input.mousePosition);
 	var raycastHit:RaycastHit;
-	if (Physics.Raycast (ray1, raycastHit)){
+	if (Physics.Raycast (ray1, raycastHit)&&raycastHit.collider.gameObject.tag!="construccion"){
 		objeto=raycastHit.collider.gameObject;
 		
 	}
