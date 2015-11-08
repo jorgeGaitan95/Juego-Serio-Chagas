@@ -29,9 +29,17 @@ public class Tienda : MonoBehaviour {
 	private bool construcciones;
 	private bool arboles;
 	private bool animales;
+
+	int contadorConstrucciones;
+	BarrasJuego jugador;
+	Misiones misiones;
+	SeleccionarObjeto seleccionarObjetos;
 	// Use this for initialization
 	void Start () {
-	
+		jugador = GameObject.Find ("Main Camera").GetComponent<BarrasJuego>();
+		misiones = GameObject.Find ("Misiones").GetComponent<Misiones> ();
+		seleccionarObjetos = GameObject.Find ("Main Camera").GetComponent<SeleccionarObjeto> ();
+		contadorConstrucciones = 0;
 	}
 	
 	// Update is called once per frame
@@ -92,7 +100,15 @@ public class Tienda : MonoBehaviour {
 					GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "Choza");
 					GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), imgChoza);
 					GUI.Label (new Rect (5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "70");
-					GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar");
+					if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar")){
+						if(jugador.recursos>=70)
+						{
+							instranciarObjeto("chozaNvl1",60);
+							jugador.recursos-=70;
+							if(misiones.buscarMision("Mision1")==true)
+								misiones.misionSeleccionada.GetComponent<Mision>().progreso+=1;
+						}
+					}
 					GUI.EndGroup ();
 
 					GUI.BeginGroup (new Rect (tamañoGrupoImgX, 0, tamañoGrupoImgX, tamañoGrupoImgY));
@@ -141,6 +157,26 @@ public class Tienda : MonoBehaviour {
 		}
 		   
 		GUI.EndGroup ();
+
+	}
+
+
+	void instranciarObjeto(string nombre,int tiempo){
+		seleccionarObjetos.moverObjetos = true;
+		contadorConstrucciones++;
+		Vector3 posicion=Camera.main.WorldToScreenPoint(Input.mousePosition);
+		GameObject construccion=GameObject.Find("ObjetosJuego/Construccion");
+		posicion.x=500;
+		posicion.y=construccion.transform.position.y;
+		posicion.z = 300f;
+		construccion = Instantiate (construccion);
+		construccion.name = "cosntruccion" + contadorConstrucciones;
+		construccion.SetActive (true);
+		GameObject padre = GameObject.Find ("ObjetosJuego");
+		construccion.transform.position = posicion;
+		construccion.transform.parent = padre.transform;
+		construccion.GetComponent<construccion> ().buscarObjetoConstruccion (nombre, tiempo);
+		mostrarTienda = false;
 
 	}
 

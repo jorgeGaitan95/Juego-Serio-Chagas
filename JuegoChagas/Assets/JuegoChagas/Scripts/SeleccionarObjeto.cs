@@ -124,10 +124,11 @@ public class SeleccionarObjeto : MonoBehaviour {
 				}
 				player.recursos+=30;
 				player.nivelRiesgo+=5;
-				if(misiones.buscarMision("Mision1")==true)
+				if(misiones.buscarMision("Mision1")==true){
 					if(numeroPalmasMision1<3){
 					numeroPalmasMision1+=1;
 					misiones.misionSeleccionada.GetComponent<Mision>().progreso+=1;
+					}
 				}
 				mostrarMenu=false;
 
