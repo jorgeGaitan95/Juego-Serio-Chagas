@@ -10,12 +10,17 @@ public class construccion : MonoBehaviour {
 	public int tiempoContruccion;
 	public int estado;
 
+
+
+
 	public ParticleSystem BrokenPlanks;
 	public ParticleSystem MainSmoke;
 
 	float tiempoMaximo=1;
 	float tiempoActual=0;
-	
+
+
+
 	// Use this for initialization
 	void Start () {
 		animacion = GetComponent<Animator> ();

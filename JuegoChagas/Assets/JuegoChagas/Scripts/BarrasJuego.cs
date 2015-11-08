@@ -13,10 +13,8 @@ public class BarrasJuego : MonoBehaviour {
 	public int nivel;
 
 	public Texture imgBtnMover;
-	public Texture imgBtnMisiones;
 	public Texture imgExperiencia;
 	public Texture imgRiesgo;
-
 
 	public GUISkin skinRiesgo;
 	public GUISkin skinExperiencia;
@@ -60,7 +58,7 @@ public class BarrasJuego : MonoBehaviour {
 		//GUI.skin = skinNivel;
 		//GUI.Button (new Rect (30, 10, 50, 50), ""+nivel);
 
-
+		//ICONOS DE DINERO Y RECURSOS
 		GUI.skin = skinDinero;
 		GUI.Box (new Rect (Screen.width / 2-50, 10, 100, 50), "$"+dinero+"     ");
 		GUI.skin = skinMadera;
@@ -69,7 +67,7 @@ public class BarrasJuego : MonoBehaviour {
 
 
 
-
+		//BOTON MOVER
 		GUI.skin = skinMover;
 
 		if (GUI.Button (new Rect (80, Screen.height - 50, 50, 50), imgBtnMover)) {
@@ -80,7 +78,8 @@ public class BarrasJuego : MonoBehaviour {
 				moverObjetos.moverObjetos=true;
 		}
 
-		GUI.BeginGroup (new Rect (25, 3, 150, 60));
+		//ICONO DE EXPERIENCIA
+		GUI.BeginGroup (new Rect (25, 3, 150, 210));
 		GUI.Label (new Rect (4, 4, 150, 60), imgExperiencia);
 		GUI.Label (new Rect (58, 5, 60, 20), "Nivel "+nivel);
 
@@ -92,9 +91,10 @@ public class BarrasJuego : MonoBehaviour {
 
 		GUI.skin = skinMover;
 		GUI.Label (new Rect (71, 25, 50, 20), "" + experiencia+" XP");
-		GUI.Button (new Rect (0, 0, 65, 65), imgBtnMisiones);
 
 		GUI.EndGroup ();
+
+		//ICONO DE RIESGO
 		GUI.skin = skinRiesgoImg;
 		GUI.BeginGroup (new Rect (Screen.width - 150, Screen.height - 60, 130, 60));
 		GUI.Box (new Rect (0, 0, 130, 60),nivelRiesgo+"%");

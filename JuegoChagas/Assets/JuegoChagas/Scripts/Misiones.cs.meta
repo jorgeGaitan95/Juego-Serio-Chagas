@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 64a6b6a824fc3a9409bf7ac1c986cef5
+timeCreated: 1446955635
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - skin: {fileID: 11400000, guid: 3297479e75012a64caa78994404b4240, type: 2}
+  - imgBoton: {instanceID: 0}
+  - imgOcultarMisiones: {fileID: 2800000, guid: b9efa9a1252d2c740bc13764c06a55c8,
+      type: 3}
+  - imgBtnMisiones: {fileID: 2800000, guid: f99ee3f69493b0349b87178e15f05253, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
