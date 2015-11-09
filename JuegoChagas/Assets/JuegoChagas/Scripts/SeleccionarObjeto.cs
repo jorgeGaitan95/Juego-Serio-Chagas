@@ -125,10 +125,10 @@ public class SeleccionarObjeto : MonoBehaviour {
 				}else{
 					Destroy(auxiliar);
 				}
-				player.recursos+=30;
-				player.nivelRiesgo+=5;
+				player.recursos+=20;
+				player.nivelRiesgo+=2;
 				if(misiones.buscarMision("Mision1")==true){
-					if(numeroPalmasMision1<3){
+					if(numeroPalmasMision1<4){
 					numeroPalmasMision1+=1;
 					misiones.misionSeleccionada.GetComponent<Mision>().progreso+=1;
 					}
@@ -145,8 +145,5 @@ public class SeleccionarObjeto : MonoBehaviour {
 	}
 
 
-	void mostarMenuConstruccion()
-	{
 
-	}
 }

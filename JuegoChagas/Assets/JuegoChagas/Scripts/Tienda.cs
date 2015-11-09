@@ -17,7 +17,8 @@ public class Tienda : MonoBehaviour {
 	public Texture imgConstrucciones;
 	public Texture imgArboles;
 
-
+	public Texture establoNvl1;
+	public Texture establoNvl2;
 	public Texture imgChoza;
 	public Texture imgChozaNvl1;
 	public Texture imgCasa;
@@ -97,14 +98,15 @@ public class Tienda : MonoBehaviour {
 				GUI.skin = skinTienda;
 				if (construcciones == true) {
 					GUI.BeginGroup (new Rect (0, 0, tamañoGrupoImgX, tamañoGrupoImgY));
-					GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "Choza");
+					GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "Choza Nvl 1");
 					GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), imgChoza);
 					GUI.Label (new Rect (5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "70");
 					if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar")){
 						if(jugador.recursos>=70)
 						{
-							instranciarObjeto("chozaNvl1",60);
+							instranciarObjeto("chozaNvl1",60,0);
 							jugador.recursos-=70;
+							jugador.nivelRiesgo+=3;
 							if(misiones.buscarMision("Mision1")==true)
 								misiones.misionSeleccionada.GetComponent<Mision>().progreso+=1;
 						}
@@ -112,17 +114,28 @@ public class Tienda : MonoBehaviour {
 					GUI.EndGroup ();
 
 					GUI.BeginGroup (new Rect (tamañoGrupoImgX, 0, tamañoGrupoImgX, tamañoGrupoImgY));
-					GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "Choza Nvl 1");
+					GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "Choza Nvl 2");
 					GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), imgChozaNvl1);
-					GUI.Label (new Rect (5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "200");
-					GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar");
+					GUI.Label (new Rect (5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "$ 400");
+					if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar")){
+						if(jugador.dinero>=400){
+							instranciarObjeto("chozaNvl2",120,0);
+							jugador.dinero-=400;
+							jugador.nivelRiesgo+=2;
+						}
+					}
 					GUI.EndGroup ();
 
 					GUI.BeginGroup (new Rect (2 * tamañoGrupoImgX, 0, tamañoGrupoImgX, tamañoGrupoImgY));
 					GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "Casa");
 					GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), imgCasa);
-					GUI.Label (new Rect (5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "$300");
-					GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar");
+					GUI.Label (new Rect (5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "$ 700");
+					if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar")){
+						if(jugador.dinero>=700){
+						instranciarObjeto("casa",180,0);
+						jugador.dinero-=700;
+						}
+					}
 					GUI.EndGroup ();
 
 				}
@@ -132,15 +145,10 @@ public class Tienda : MonoBehaviour {
 					GUI.BeginGroup (new Rect (0, 0, tamañoGrupoImgX, tamañoGrupoImgY));
 					GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "Palma Real");
 					GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), imgPalmaReal);
-					GUI.Label (new Rect (0, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "Gratis");
-					GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar");
-					GUI.EndGroup ();
+					GUI.Label (new Rect (0, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "$1000");
+					if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar")){
 					
-					GUI.BeginGroup (new Rect (tamañoGrupoImgX, 0, tamañoGrupoImgX, tamañoGrupoImgY));
-					GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "palma");
-					GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), imgPalmaPlatanera);
-					GUI.Label (new Rect (5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "$ 25");
-					GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar");
+					}
 					GUI.EndGroup ();
 					
 		
@@ -148,9 +156,42 @@ public class Tienda : MonoBehaviour {
 
 
 				if (animales == true) {
-				}
+					
+				GUI.BeginGroup (new Rect (0, 0, tamañoGrupoImgX, tamañoGrupoImgY));
+				GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "EstabloNvl1");
+				GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), establoNvl1);
+				GUI.Label (new Rect (0, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "$ 350");
+				if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar")){
 
-			GUI.EndGroup ();
+					if(jugador.dinero>=350)
+					{
+						instranciarObjeto("establoNvl1",90,1);
+						jugador.dinero-=350;
+						jugador.nivelRiesgo+=2;
+						if(misiones.buscarMision("Mision3")==true)
+							misiones.misionSeleccionada.GetComponent<Mision>().progreso+=1;
+					}
+				}
+				GUI.EndGroup ();
+				
+				GUI.BeginGroup (new Rect (tamañoGrupoImgX, 0, tamañoGrupoImgX, tamañoGrupoImgY));
+				GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "EstabloNvl2");
+				GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), establoNvl2);
+				GUI.Label (new Rect (5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "$ 500");
+				if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar")){
+				if(jugador.dinero>=500){
+					instranciarObjeto("establoNvl2",150,1);
+					jugador.dinero-=500;
+					jugador.nivelRiesgo-=3;
+					if(misiones.buscarMision("Mision3")==true)
+						misiones.misionSeleccionada.GetComponent<Mision>().progreso+=1;
+				}
+			}
+				GUI.EndGroup ();
+			
+				}
+		
+		GUI.EndGroup ();
 
 		if (GUI.Button (new Rect (10, 5, 25, 15), imgBtnAtras)) {
 			mostrarTienda=false;
@@ -161,14 +202,17 @@ public class Tienda : MonoBehaviour {
 	}
 
 
-	void instranciarObjeto(string nombre,int tiempo){
+	void instranciarObjeto(string nombre,int tiempo,int tipo){
 		seleccionarObjetos.moverObjetos = true;
 		contadorConstrucciones++;
-		Vector3 posicion=Camera.main.WorldToScreenPoint(Input.mousePosition);
+		Vector3 posicion=new Vector3(0,0,0);
 		GameObject construccion=GameObject.Find("ObjetosJuego/Construccion");
 		posicion.x=500;
 		posicion.y=construccion.transform.position.y;
 		posicion.z = 300f;
+		if (tipo == 1) {
+			construccion.transform.localScale=new Vector3(1.7511f,1.7511f,1.7511f);
+		}
 		construccion = Instantiate (construccion);
 		construccion.name = "cosntruccion" + contadorConstrucciones;
 		construccion.SetActive (true);
@@ -179,5 +223,4 @@ public class Tienda : MonoBehaviour {
 		mostrarTienda = false;
 
 	}
-
 }

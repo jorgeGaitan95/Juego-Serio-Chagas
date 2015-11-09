@@ -46,7 +46,8 @@ public class BarrasJuego : MonoBehaviour {
 			nivelRiesgo = 0;
 		}
 		if (experiencia > experienciaMaxima) {
-			experiencia = experienciaMaxima;
+			nivel++;
+			experiencia = experiencia-experienciaMaxima;
 		}
 		if (experiencia < 0) {
 			experiencia = 0;

@@ -25,7 +25,6 @@ public class construccion : MonoBehaviour {
 	void Start () {
 		animacion = GetComponent<Animator> ();
 		estado = 0;
-		nombreObjeto = "chozaNvl1";
 		BrokenPlanks.gameObject.SetActive(false);
 
 	}

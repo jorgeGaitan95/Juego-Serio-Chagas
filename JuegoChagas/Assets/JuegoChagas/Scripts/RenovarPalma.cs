@@ -14,6 +14,8 @@ public class RenovarPalma : MonoBehaviour {
 	public bool eliminarPalma;
 	bool tiempoTerminado;
 
+	BarrasJuego player;
+
 	// Use this for initialization
 	void Start () {
 		renovar = false;
@@ -21,6 +23,7 @@ public class RenovarPalma : MonoBehaviour {
 		progreso = 0;
 		tiempoTerminado = false;
 		eliminarPalma = false;
+		player = GameObject.Find ("Main Camera").GetComponent<BarrasJuego> ();
 	}
 	
 	// Update is called once per frame
@@ -65,6 +68,7 @@ public class RenovarPalma : MonoBehaviour {
 				mostrarBarraEstado=false;
 				renovar=false;
 				progreso=0;
+				player.nivelRiesgo-=2;
 				tiempoTerminado=true;
 			}
 		}

@@ -7,6 +7,8 @@ public class Mision : MonoBehaviour {
 	public string mensajeMision;
 	public string mensajeFinal;
 
+	public int dineroRecompensa;
+	public int experienciaRecompensa;
 	public Texture imgMision;
 	public bool activada;
 	public bool finalizada;
@@ -14,6 +16,7 @@ public class Mision : MonoBehaviour {
 	public int progreso;
 	public int numeroPasos;
 	BarrasJuego BJ;
+
 
 
 	// Use this for initialization
@@ -26,8 +29,8 @@ public class Mision : MonoBehaviour {
 	void Update () {
 		if (progreso==numeroPasos) {
 			mensajeMision=mensajeFinal;
-			BJ.dinero += 200;
-			BJ.experiencia += 40;
+			BJ.dinero += dineroRecompensa;
+			BJ.experiencia += experienciaRecompensa;
 			finalizada=true;
 			GameObject.Find("Misiones").GetComponent<Misiones>().actualizarMisiones();
 			mostarMensaje();
@@ -42,4 +45,5 @@ public class Mision : MonoBehaviour {
 		mensaje.mensaje = mensajeMision;
 		mensaje.mostarMensaje = true;
 	}
+
 }

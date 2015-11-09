@@ -69,6 +69,7 @@ public class hoMove : MonoBehaviour
 
     //cache all waypoint position references of requested path
     private Transform[] waypoints;
+
     [HideInInspector]
     //location indicator
     public int currentPoint = 0;
@@ -113,6 +114,7 @@ public class hoMove : MonoBehaviour
     //checks if gameobject should move on game start
     internal void Start()
     {
+
         //get animation component from children
         if (!anim)
             anim = gameObject.GetComponentInChildren<Animation>();
@@ -145,7 +147,9 @@ public class hoMove : MonoBehaviour
             Debug.LogWarning(gameObject.name + " has no path! Please set Path Container.");
             return;
         }
-
+		if (this.name=="Horse") {
+			pathContainer.waypoints[0] = this.transform.parent.transform;
+		}
         //get Transform array with waypoint positions
         waypoints = pathContainer.waypoints;
 		
