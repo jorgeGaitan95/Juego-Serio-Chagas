@@ -6,7 +6,6 @@ public class Misiones : MonoBehaviour {
 	// VARIABLES DE LA VISTA
 	public GUISkin skin;
 	public bool mostrarMisiones;
-	public Texture imgBoton;
 	public Texture imgOcultarMisiones;
 	public Texture imgBtnMisiones;
 	
@@ -37,6 +36,7 @@ public class Misiones : MonoBehaviour {
 
 	//actualiza la posicion de las misiones
 	public void actualizarMisiones(){
+		misionSeleccionada = null;
 		for (int i=0; i<3; i++) {
 			if(misiones[i]!=null&&misiones[i].GetComponent<Mision>().finalizada==true)
 				misiones[i]=null;
@@ -68,19 +68,19 @@ public class Misiones : MonoBehaviour {
 				mostrarMisiones=false;
 			}
 
-			if(GUI.Button (new Rect (25, 90, 60, 60), imgBoton)){
+			if(GUI.Button (new Rect (25, 90, 60, 60), misiones[0].GetComponent<Mision>().imgMision)){
 				Mision scriptMision=misiones[0].GetComponent<Mision>();
 				scriptMision.activada=true;
 				scriptMision.mostarMensaje();
 			}
 
-			if(GUI.Button (new Rect (25, 150, 60, 60), imgBoton)){
+			if(GUI.Button (new Rect (25, 150, 60, 60), misiones[1].GetComponent<Mision>().imgMision)){
 				Mision scriptMision=misiones[1].GetComponent<Mision>();
 				scriptMision.activada=true;
 				scriptMision.mostarMensaje();
 			}
 
-			if(GUI.Button (new Rect (25, 210, 60, 60), imgBoton)){
+			if(GUI.Button (new Rect (25, 210, 60, 60), misiones[2].GetComponent<Mision>().imgMision)){
 				Mision scriptMision=misiones[2].GetComponent<Mision>();
 				scriptMision.activada=true;
 				scriptMision.mostarMensaje();

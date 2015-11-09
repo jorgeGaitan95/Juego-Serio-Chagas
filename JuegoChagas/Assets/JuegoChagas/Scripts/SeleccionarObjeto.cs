@@ -96,8 +96,11 @@ public class SeleccionarObjeto : MonoBehaviour {
 				
 				if (auxiliar.tag == "palmaReal"||auxiliar.tag=="palmaAutogenerada") {
 					mostrarMenu = true;
-				}else
-					mostrarMenu=false;
+				}
+				if(auxiliar.tag=="construccion")
+				{
+					auxiliar.GetComponent<LimpiarConstruccion>().mostrarMenu=true;
+				}
 			}
 		}
 	}
@@ -139,7 +142,11 @@ public class SeleccionarObjeto : MonoBehaviour {
 			}
 
 		}
-		
-		
+	}
+
+
+	void mostarMenuConstruccion()
+	{
+
 	}
 }

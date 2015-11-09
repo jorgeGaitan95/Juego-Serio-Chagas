@@ -6,13 +6,15 @@ public class Mision : MonoBehaviour {
 	public string nombre;
 	public string mensajeMision;
 	public string mensajeFinal;
-	
+
+	public Texture imgMision;
 	public bool activada;
 	public bool finalizada;
 	public bool mostrarMensaje;
 	public int progreso;
 	public int numeroPasos;
 	BarrasJuego BJ;
+
 
 	// Use this for initialization
 	void Start () {

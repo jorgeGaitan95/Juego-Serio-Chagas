@@ -56,6 +56,7 @@ public class construccion : MonoBehaviour {
 						Destroy (this.GetComponent<BoxCollider> ());
 						BoxCollider box=objetoConstruccion.AddComponent<BoxCollider> ();
 						box.isTrigger=true;
+						objetoConstruccion.GetComponent<LimpiarConstruccion>().construccionlimpia=true;
 						Destroy (gameObject, 4.0f);
 					}
 				}
