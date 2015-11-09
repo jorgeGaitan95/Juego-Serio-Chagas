@@ -104,7 +104,7 @@ public class Tienda : MonoBehaviour {
 					if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar")){
 						if(jugador.recursos>=70)
 						{
-							instranciarObjeto("chozaNvl1",60,0);
+							instranciarObjeto("ChozaNvl1",60,0);
 							jugador.recursos-=70;
 							jugador.nivelRiesgo+=3;
 							if(misiones.buscarMision("Mision1")==true)
@@ -119,7 +119,7 @@ public class Tienda : MonoBehaviour {
 					GUI.Label (new Rect (5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "$ 400");
 					if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar")){
 						if(jugador.dinero>=400){
-							instranciarObjeto("chozaNvl2",120,0);
+							instranciarObjeto("ChozaNvl2",120,0);
 							jugador.dinero-=400;
 							jugador.nivelRiesgo+=2;
 						}
@@ -132,7 +132,7 @@ public class Tienda : MonoBehaviour {
 					GUI.Label (new Rect (5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "$ 700");
 					if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar")){
 						if(jugador.dinero>=700){
-						instranciarObjeto("casa",180,0);
+						instranciarObjeto("Casa",180,0);
 						jugador.dinero-=700;
 						}
 					}
@@ -143,7 +143,7 @@ public class Tienda : MonoBehaviour {
 
 				if (arboles == true) {
 					GUI.BeginGroup (new Rect (0, 0, tamañoGrupoImgX, tamañoGrupoImgY));
-					GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "Palma Real");
+					GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "Jugo de caña");
 					GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), imgPalmaReal);
 					GUI.Label (new Rect (0, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "$1000");
 					if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar")){
@@ -165,7 +165,7 @@ public class Tienda : MonoBehaviour {
 
 					if(jugador.dinero>=350)
 					{
-						instranciarObjeto("establoNvl1",90,1);
+						instranciarObjeto("EstabloNvl1",90,1);
 						jugador.dinero-=350;
 						jugador.nivelRiesgo+=2;
 						if(misiones.buscarMision("Mision3")==true)
@@ -180,7 +180,7 @@ public class Tienda : MonoBehaviour {
 				GUI.Label (new Rect (5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "$ 500");
 				if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar")){
 				if(jugador.dinero>=500){
-					instranciarObjeto("establoNvl2",150,1);
+					instranciarObjeto("EstabloNvl2",150,1);
 					jugador.dinero-=500;
 					jugador.nivelRiesgo-=3;
 					if(misiones.buscarMision("Mision3")==true)
@@ -204,15 +204,16 @@ public class Tienda : MonoBehaviour {
 
 	void instranciarObjeto(string nombre,int tiempo,int tipo){
 		seleccionarObjetos.moverObjetos = true;
-		contadorConstrucciones++;
 		Vector3 posicion=new Vector3(0,0,0);
+		contadorConstrucciones++;
 		GameObject construccion=GameObject.Find("ObjetosJuego/Construccion");
 		posicion.x=500;
 		posicion.y=construccion.transform.position.y;
 		posicion.z = 300f;
-		if (tipo == 1) {
+		if (tipo == 1) 
 			construccion.transform.localScale=new Vector3(1.7511f,1.7511f,1.7511f);
-		}
+		else
+			construccion.transform.localScale=new Vector3(2.785662f,2.785662f,2.785662f);
 		construccion = Instantiate (construccion);
 		construccion.name = "cosntruccion" + contadorConstrucciones;
 		construccion.SetActive (true);
@@ -222,5 +223,24 @@ public class Tienda : MonoBehaviour {
 		construccion.GetComponent<construccion> ().buscarObjetoConstruccion (nombre, tiempo);
 		mostrarTienda = false;
 
+	}
+
+
+
+	public void mejorarCosntruccion(string nombre,int tiempo,int tipo,Vector3 posicion){
+	
+		contadorConstrucciones++;
+		GameObject construccion=GameObject.Find("ObjetosJuego/Construccion");
+		if (tipo == 1) 
+			construccion.transform.localScale=new Vector3(1.7511f,1.7511f,1.7511f);
+		else
+			construccion.transform.localScale=new Vector3(2.785662f,2.785662f,2.785662f);
+		construccion = Instantiate (construccion);
+		construccion.name = "cosntruccion" + contadorConstrucciones;
+		construccion.SetActive (true);
+		GameObject padre = GameObject.Find ("ObjetosJuego");
+		construccion.transform.position = posicion;
+		construccion.transform.parent = padre.transform;
+		construccion.GetComponent<construccion> ().buscarObjetoConstruccion (nombre, tiempo);
 	}
 }

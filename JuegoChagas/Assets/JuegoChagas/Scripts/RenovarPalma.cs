@@ -46,6 +46,7 @@ public class RenovarPalma : MonoBehaviour {
 				objeto=Instantiate(objeto);
 				objeto.transform.position=posicionObjeto;
 				objeto.name="palma";
+				objeto.tag="palmaAutogenerada";
 			}
 			tiempoTerminado=false;
 		}

@@ -12,11 +12,15 @@ public class SeleccionarObjeto : MonoBehaviour {
 	bool palmaMovida = false;
 	Vector3 posicionInicalpalma=Vector3.zero;
 	GameObject nuevaPalma;
+	TouchCamaraControl movimientoCamara;
+	public Texture btnCerrar;
+	public GUISkin skinCerrar;
 
 	int numeroPalmasMision1;
 	void Start(){
 		player = GameObject.Find ("Main Camera").GetComponent<BarrasJuego> ();
 		misiones = GameObject.Find ("Misiones").GetComponent<Misiones> ();
+		movimientoCamara = GameObject.Find ("Main Camera").GetComponent<TouchCamaraControl> ();
 		mostrarMenu = false;
 		moverObjetos = false;
 		numeroPalmasMision1 = 0;
@@ -34,13 +38,16 @@ public class SeleccionarObjeto : MonoBehaviour {
 	void moverObjeto(){
 
 		if (Input.GetMouseButtonDown (0)) {
+
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit raycastHit;
 
 			if (Physics.Raycast (ray, out raycastHit) == true && raycastHit.collider.gameObject.tag != "plane") 
 			{
 				auxiliar = raycastHit.collider.gameObject;
-				
+				movimientoCamara.invertMoveX=true;
+				movimientoCamara.invertMoveY=true;
+
 				if (auxiliar.GetComponent<Rigidbody> () == true) {
 					auxiliar.GetComponent<Rigidbody> ().isKinematic = false;
 				}
@@ -62,7 +69,8 @@ public class SeleccionarObjeto : MonoBehaviour {
 		}
 		
 		if (Input.GetMouseButtonUp (0)) {
-
+			movimientoCamara.invertMoveX=false;
+			movimientoCamara.invertMoveY=false;
 			if (auxiliar != null) {
 
 				if(palmaMovida==true&&posicionInicalpalma!=auxiliar.transform.position)
@@ -108,7 +116,7 @@ public class SeleccionarObjeto : MonoBehaviour {
 	void OnGUI(){
 		
 		if (mostrarMenu == true) {
-
+			GUI.skin=null;
 			Vector3 posicion=Camera.main.WorldToScreenPoint(auxiliar.transform.position);
 			posicion.y=Screen.height-posicion.y;
 
@@ -136,11 +144,17 @@ public class SeleccionarObjeto : MonoBehaviour {
 				mostrarMenu=false;
 
 			}
+
 			if(GUI.Button(new Rect(posicion.x,posicion.y+23,65,20),"Cancelar"))
 			{
 				mostrarMenu=false;
 			}
 
+		}
+		if (moverObjetos == true) {
+			GUI.skin=skinCerrar;
+			if(GUI.Button(new Rect((Screen.width/2)-30,Screen.height-60,60,60),btnCerrar))
+				moverObjetos=false;
 		}
 	}
 

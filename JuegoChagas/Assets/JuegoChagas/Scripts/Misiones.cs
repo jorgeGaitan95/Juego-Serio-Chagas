@@ -25,10 +25,12 @@ public class Misiones : MonoBehaviour {
 	//verifica que la mision si este visible para el jugador
 	public bool buscarMision(string nombre){
 		for (int i=0; i<3; i++) {
-			if(misiones[i].name==nombre)
-				if(misiones[i].GetComponent<Mision>().activada==true){
-				misionSeleccionada=misiones[i];
-				return true;
+			if (misiones [i] != null) {
+				if (misiones [i].name == nombre)
+				if (misiones [i].GetComponent<Mision> ().activada == true) {
+					misionSeleccionada = misiones [i];
+					return true;
+				}
 			}
 		}
 		return false;

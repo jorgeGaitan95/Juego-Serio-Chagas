@@ -22,11 +22,14 @@ public class LimpiarConstruccion : MonoBehaviour {
 	infoConstrucciones scriptInformacion;
 	Misiones misiones;
 	BarrasJuego player;
+	Tienda tienda;
 
 	// Use this for initialization
 	void Start () {
 		misiones = GameObject.Find ("Misiones").GetComponent<Misiones> ();
 		player = GameObject.Find ("Main Camera").GetComponent<BarrasJuego> ();
+		tienda = GameObject.Find ("Main Camera").GetComponent<Tienda> ();
+		mejorarConstruccion = false;
 	}
 	
 	// Update is called once per frame
@@ -47,10 +50,6 @@ public class LimpiarConstruccion : MonoBehaviour {
 				progreso=0;
 			}
 		}
-		if(mejorarConstruccion==true)
-		{
-
-		}
 	}
 
 
@@ -70,16 +69,6 @@ public class LimpiarConstruccion : MonoBehaviour {
 			if (construccionlimpia == false) {
 				if (GUI.Button (new Rect (posicion.x, posicion.y, 65, 20), "Asear")) {
 					limpiarCasa ();
-
-					/*player.recursos+=30;
-					player.nivelRiesgo+=5;
-					if(misiones.buscarMision("Mision1")==true){
-						if(numeroPalmasMision1<3){
-							numeroPalmasMision1+=1;
-							misiones.misionSeleccionada.GetComponent<Mision>().progreso+=1;
-						}
-					}*/
-
 					mostrarMenu = false;
 					
 				}
@@ -113,7 +102,22 @@ public class LimpiarConstruccion : MonoBehaviour {
 			GUI.Label(new Rect((tamañoBoxX/2)-40, 20, 80, 30),scriptInformacion.nombreConstruccion);
 			GUI.Label(new Rect(0,tamañoY/2-(tamañoBoxX/2),tamañoBoxX,tamañoBoxX),scriptInformacion.imagenConstruccion);
 			GUI.Label(new Rect((tamañoBoxX/2),tamañoY-60,60,30),"$ "+scriptInformacion.costoMejora);
-			GUI.Button(new Rect((tamañoBoxX/2)-40,tamañoY-45,80,30),"Mejorar");
+			if(GUI.Button(new Rect((tamañoBoxX/2)-40,tamañoY-45,80,30),"Mejorar"))
+			{
+				if(player.dinero>=scriptInformacion.costoMejora)
+				{
+					mostarMejora=false;
+					player.dinero-=scriptInformacion.costoMejora;
+					player.nivelRiesgo-=scriptInformacion.reduccionNivelRiesgo;
+					int tipo=0;
+					if(scriptInformacion.nombreConstruccion=="Establo Nvl2")
+						tipo=1;
+					if(misiones.buscarMision("Mision4")==true)
+						misiones.misionSeleccionada.GetComponent<Mision>().progreso+=1;
+					tienda.mejorarCosntruccion(scriptInformacion.nombreConstruccion,scriptInformacion.tiempoConstruccion,tipo,this.transform.position);
+					Destroy(gameObject);
+				}
+			}
 			GUI.EndGroup();
 
 			float tamañoGrupo2=3*((tamañoX - 20) / 4);
@@ -124,7 +128,7 @@ public class LimpiarConstruccion : MonoBehaviour {
 
 
 			GUI.Label(new Rect(10,(tamañoY/2)+10,80,20),"BENEFICIOS");
-			GUI.Label(new Rect(20,(tamañoY/2)+30,tamañoGrupo2-10,(tamañoY/2)-50),scriptInformacion.beneficios);
+			GUI.Label(new Rect(20,(tamañoY/2)+30,tamañoGrupo2-20,(tamañoY/2)-50),scriptInformacion.beneficios);
 
 			GUI.EndGroup();
 

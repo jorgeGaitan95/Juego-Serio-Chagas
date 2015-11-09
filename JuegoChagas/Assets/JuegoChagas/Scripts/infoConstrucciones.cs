@@ -8,6 +8,7 @@ public class infoConstrucciones : MonoBehaviour {
 	public int costoMejora;
 	public string mejora;
 	public string beneficios;
+	public int tiempoConstruccion;
 	public int reduccionNivelRiesgo;
 	public GameObject[] construcciones;
 	// Use this for initialization
@@ -35,6 +36,7 @@ public class infoConstrucciones : MonoBehaviour {
 				}
 				beneficios=datos.beneficios;
 				reduccionNivelRiesgo=datos.reduccionNivelRiesgo;
+				tiempoConstruccion=datos.tiempoConstruccion;
 				return true;
 			}
 		}

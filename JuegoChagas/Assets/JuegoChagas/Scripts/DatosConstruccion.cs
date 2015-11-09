@@ -9,6 +9,7 @@ public class DatosConstruccion : MonoBehaviour {
 	public string[] mejoras;
 	public string beneficios;
 	public int reduccionNivelRiesgo;
+	public int tiempoConstruccion;
 
 
 
