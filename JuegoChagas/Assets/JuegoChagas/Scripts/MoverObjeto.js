@@ -140,7 +140,7 @@ function DragObject (distance : float, hitpoint : Vector3, dir : Vector3)
 function OnTriggerStay(col:Collider){
 
 	estado=true;
-	Debug.Log(estado);
+	objeto=this.gameObject;
 	var i:int;
 	for (i = 0;i < objeto.GetComponent.<Renderer>().materials.Length; i++)
 	{               
@@ -151,7 +151,7 @@ function OnTriggerStay(col:Collider){
 function OnTriggerExit(col:Collider){
 	estado=false;
 	var i:int;
-	
+	objeto=this.gameObject;
     for (i = 0;i < objeto.GetComponent.<Renderer>().materials.Length; i++)
 	{         
 		objeto.GetComponent.<Renderer>().materials[i].color=Color.green;

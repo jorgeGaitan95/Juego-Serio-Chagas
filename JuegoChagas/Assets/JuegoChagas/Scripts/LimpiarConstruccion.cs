@@ -110,7 +110,7 @@ public class LimpiarConstruccion : MonoBehaviour {
 					player.dinero-=scriptInformacion.costoMejora;
 					player.nivelRiesgo-=scriptInformacion.reduccionNivelRiesgo;
 					int tipo=0;
-					if(scriptInformacion.nombreConstruccion=="Establo Nvl2")
+					if(scriptInformacion.nombreConstruccion=="EstabloNvl2")
 						tipo=1;
 					if(misiones.buscarMision("Mision4")==true)
 						misiones.misionSeleccionada.GetComponent<Mision>().progreso+=1;
