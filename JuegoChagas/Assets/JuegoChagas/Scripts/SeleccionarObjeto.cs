@@ -92,21 +92,20 @@ public class SeleccionarObjeto : MonoBehaviour {
 
 	void clickObjeto(){
 		if (Input.GetMouseButtonDown (0)) {
-
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit raycastHit;
 			if (Physics.Raycast (ray, out raycastHit) == true && raycastHit.collider.gameObject.tag != "plane" ) {
 				
 				auxiliar = raycastHit.collider.gameObject;
 
-				if(auxiliar.tag=="plane")
-					Debug.Log("terreno");
+			
 				
 				if (auxiliar.tag == "palmaReal"||auxiliar.tag=="palmaAutogenerada") {
 					mostrarMenu = true;
 				}
 				if(auxiliar.tag=="construccion")
 				{
+					mostrarMenu=false;
 					auxiliar.GetComponent<LimpiarConstruccion>().mostrarMenu=true;
 				}
 			}
@@ -115,7 +114,7 @@ public class SeleccionarObjeto : MonoBehaviour {
 
 	void OnGUI(){
 		
-		if (mostrarMenu == true) {
+		if (mostrarMenu == true&&auxiliar!=null) {
 			GUI.skin=null;
 			Vector3 posicion=Camera.main.WorldToScreenPoint(auxiliar.transform.position);
 			posicion.y=Screen.height-posicion.y;

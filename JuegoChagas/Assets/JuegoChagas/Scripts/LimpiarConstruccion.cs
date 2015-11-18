@@ -88,6 +88,8 @@ public class LimpiarConstruccion : MonoBehaviour {
 		}
 
 		if (mostarMejora == true) {
+			GameObject.Find ("Notificaciones/MensajeNormal").GetComponent<MensajeOnGUI> ().mostarMensaje=false;
+			GameObject.Find ("Main Camera").GetComponent<Tienda> ().mostrarTienda=false;
 			float tamañoX = Screen.width / 2;
 			float tamañoY = Screen.height / 2;
 			GUI.skin=skinMejoras;

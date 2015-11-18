@@ -33,16 +33,16 @@ public class Mision : MonoBehaviour {
 			BJ.experiencia += experienciaRecompensa;
 			finalizada=true;
 			GameObject.Find("Misiones").GetComponent<Misiones>().actualizarMisiones();
-			mostarMensaje();
+			mostarMensaje("Mision Finalizada"+"\n");
 			Destroy(gameObject);
 		}
 	}
 
-	public void mostarMensaje()
+	public void mostarMensaje(string mensajeInicial)
 	{
 		MensajeOnGUI mensaje = GameObject.Find ("Notificaciones/MensajeNormal").GetComponent<MensajeOnGUI> ();
 		mensaje.nombre = nombre;
-		mensaje.mensaje = mensajeMision;
+		mensaje.mensaje = mensajeInicial+mensajeMision;
 		mensaje.mostarMensaje = true;
 	}
 

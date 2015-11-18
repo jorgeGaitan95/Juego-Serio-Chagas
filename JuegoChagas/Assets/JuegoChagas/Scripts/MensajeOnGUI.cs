@@ -20,6 +20,7 @@ public class MensajeOnGUI : MonoBehaviour {
 	void OnGUI(){
 		GUI.skin = SkinMensaje;
 		if (mostarMensaje == true) {
+			GameObject.Find ("Main Camera").GetComponent<Tienda> ().mostrarTienda=false;
 			Rect firstQuest = new Rect (Screen.width / 4, Screen.height / 4, Screen.width / 2, (Screen.height / 2) + 100);
 
 			GUI.BeginGroup (firstQuest);

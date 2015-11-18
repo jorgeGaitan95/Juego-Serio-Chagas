@@ -73,21 +73,21 @@ public class Misiones : MonoBehaviour {
 				if (GUI.Button (new Rect (25, 90, 60, 60), misiones [0].GetComponent<Mision> ().imgMision)) {
 					Mision scriptMision = misiones [0].GetComponent<Mision> ();
 					scriptMision.activada = true;
-					scriptMision.mostarMensaje ();
+					scriptMision.mostarMensaje ("");
 				}
 			}
 			if(misiones[1]!=null){
 				if (GUI.Button (new Rect (25, 150, 60, 60), misiones [1].GetComponent<Mision> ().imgMision)) {
 					Mision scriptMision = misiones [1].GetComponent<Mision> ();
 					scriptMision.activada = true;
-					scriptMision.mostarMensaje ();
+					scriptMision.mostarMensaje ("");
 				}
 			}
 			if(misiones[2]!=null){
 				if(GUI.Button (new Rect (25, 210, 60, 60), misiones[2].GetComponent<Mision>().imgMision)){
 					Mision scriptMision=misiones[2].GetComponent<Mision>();
 					scriptMision.activada=true;
-					scriptMision.mostarMensaje();
+					scriptMision.mostarMensaje("");
 				}
 			}
 

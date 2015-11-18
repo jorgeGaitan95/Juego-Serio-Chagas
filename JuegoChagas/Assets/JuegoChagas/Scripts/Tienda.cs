@@ -12,7 +12,7 @@ public class Tienda : MonoBehaviour {
 	public Texture imgBtnAtras;
 
 
-	private bool mostrarTienda;
+	public  bool mostrarTienda;
 	public Texture imgAnimales;
 	public Texture imgConstrucciones;
 	public Texture imgArboles;
@@ -22,6 +22,8 @@ public class Tienda : MonoBehaviour {
 	public Texture imgChoza;
 	public Texture imgChozaNvl1;
 	public Texture imgCasa;
+	public Texture madera;
+	public Texture moneda;
 
 	public Texture imgPalmaReal;
 	public Texture imgPalmaPlatanera;
@@ -56,11 +58,11 @@ public class Tienda : MonoBehaviour {
 		}
 		if (mostrarTienda==true) {
 			abrirTienda();
+			GameObject.Find ("Notificaciones/MensajeNormal").GetComponent<MensajeOnGUI> ().mostarMensaje = false;
 		}
 	}
 
 	void abrirTienda(){
-
 		float tamañoX = Screen.width / 2;
 		float tamañoY = Screen.height / 2;
 
@@ -100,7 +102,8 @@ public class Tienda : MonoBehaviour {
 					GUI.BeginGroup (new Rect (0, 0, tamañoGrupoImgX, tamañoGrupoImgY));
 					GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "Choza Nvl 1");
 					GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), imgChoza);
-					GUI.Label (new Rect (5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "70");
+					GUI.Label (new Rect (tamañoGrupoImgX/2-20, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 12, 25, 30), madera);
+					GUI.Label (new Rect (tamañoGrupoImgX/2+5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, 50, 20), "70");
 					if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar")){
 						if(jugador.recursos>=70)
 						{
@@ -116,7 +119,8 @@ public class Tienda : MonoBehaviour {
 					GUI.BeginGroup (new Rect (tamañoGrupoImgX, 0, tamañoGrupoImgX, tamañoGrupoImgY));
 					GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "Choza Nvl 2");
 					GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), imgChozaNvl1);
-					GUI.Label (new Rect (5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "$ 400");
+					GUI.Label (new Rect (tamañoGrupoImgX/2-20, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, 20, 20), moneda);
+					GUI.Label (new Rect (tamañoGrupoImgX/2-5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, 50, 20), "400");
 					if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar")){
 						if(jugador.dinero>=400){
 							instranciarObjeto("ChozaNvl2",120,0);
@@ -129,7 +133,8 @@ public class Tienda : MonoBehaviour {
 					GUI.BeginGroup (new Rect (2 * tamañoGrupoImgX, 0, tamañoGrupoImgX, tamañoGrupoImgY));
 					GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "Casa");
 					GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), imgCasa);
-					GUI.Label (new Rect (5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "$ 700");
+					GUI.Label (new Rect (tamañoGrupoImgX/2-20, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, 20, 20), moneda);
+					GUI.Label (new Rect (tamañoGrupoImgX/2-5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, 50, 20), "700");
 					if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar")){
 						if(jugador.dinero>=700){
 						instranciarObjeto("Casa",180,0);
@@ -145,7 +150,8 @@ public class Tienda : MonoBehaviour {
 					GUI.BeginGroup (new Rect (0, 0, tamañoGrupoImgX, tamañoGrupoImgY));
 					GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "Jugo de caña");
 					GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), imgPalmaReal);
-					GUI.Label (new Rect (0, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "$1000");
+					GUI.Label (new Rect (tamañoGrupoImgX/2-20, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, 20, 20), moneda);
+					GUI.Label (new Rect (tamañoGrupoImgX/2-5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, 50, 20), "1000");
 					if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar")){
 					
 					}
@@ -160,7 +166,8 @@ public class Tienda : MonoBehaviour {
 				GUI.BeginGroup (new Rect (0, 0, tamañoGrupoImgX, tamañoGrupoImgY));
 				GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "EstabloNvl1");
 				GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), establoNvl1);
-				GUI.Label (new Rect (0, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "$ 350");
+				GUI.Label (new Rect (tamañoGrupoImgX/2-20, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 7, 20, 20), moneda);
+				GUI.Label (new Rect (tamañoGrupoImgX/2-5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 7, 50, 20), "350");
 				if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar")){
 
 					if(jugador.dinero>=350)
@@ -177,7 +184,8 @@ public class Tienda : MonoBehaviour {
 				GUI.BeginGroup (new Rect (tamañoGrupoImgX, 0, tamañoGrupoImgX, tamañoGrupoImgY));
 				GUI.Label (new Rect (5, 5, tamañoGrupoImgX - 10, 20), "EstabloNvl2");
 				GUI.Label (new Rect (0, tamañoGrupoImgY / 4, tamañoGrupoImgX, tamañoGrupoImgX), establoNvl2);
-				GUI.Label (new Rect (5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 10, tamañoGrupoImgX, 20), "$ 500");
+				GUI.Label (new Rect (tamañoGrupoImgX/2-20, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 7, 20, 20), moneda);
+				GUI.Label (new Rect (tamañoGrupoImgX/2-5, tamañoGrupoImgX + (tamañoGrupoImgY / 4) - 7, 50, 20), "500");
 				if(GUI.Button (new Rect (tamañoGrupoImgX / 10, tamañoY - 60, tamañoGrupoImgX - 2 * (tamañoGrupoImgX / 10), 20), "Compar")){
 				if(jugador.dinero>=500){
 					instranciarObjeto("EstabloNvl2",150,1);

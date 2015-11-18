@@ -24,7 +24,7 @@ public class Mision1 : MonoBehaviour {
 	
 	
 		if (progreso==3&&finalizada==false) {
-			mensaje=mensajeFinal;
+			mensaje="Mision Finalizada..."+"\n"+mensajeFinal;
 			finalizada=true;
 			activada=true;
 		}
